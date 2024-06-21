@@ -20,7 +20,8 @@ class _NewScreenDesignState extends State<NewScreenDesign> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: false,
+        // centerTitle: false,
+        backgroundColor: Colors.blue,
         title: Text(
           "Discover the best\nProduct!",
           style: GoogleFonts.roboto(
@@ -30,8 +31,9 @@ class _NewScreenDesignState extends State<NewScreenDesign> {
         ),
         actions: [
           CircleAvatar(
-            radius: 50,
-          )
+              radius: MediaQuery.of(context).size.width * 0.035,
+              backgroundImage: NetworkImage(
+                  "https://t4.ftcdn.net/jpg/01/26/61/13/360_F_126611337_m8kcRtS5G7AhrFpOQ0Wufx4PgL6J4yxg.jpg")),
         ],
       ),
       body: Column(
