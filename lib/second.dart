@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class First extends StatefulWidget {
   const First({super.key});
 
@@ -9,14 +8,20 @@ class First extends StatefulWidget {
 }
 
 class _FirstState extends State<First> {
+  var pickDate = "Get Date";
   TextEditingController timePicker = TextEditingController();
   TextEditingController datePicker = TextEditingController();
+
+  get date => null;
+
+  get dateFormat => null;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text("New Screen"),
+          backgroundColor: Colors.amber,
+          title: const Text("Date and time"),
         ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -48,39 +53,25 @@ class _FirstState extends State<First> {
               const SizedBox(
                 height: 20,
               ),
-              TextField(
-                controller: datePicker,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                  prefixIcon: Icon(Icons.calendar_today),
-                  labelText: 'Pick Date',
-                  labelStyle: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.purple,
-                  ),
-                ),
-                onTap: () async {
-                  DateTime? datetime = await showDatePicker(
+              ElevatedButton(
+                onPressed: () async {
+                 
+
+                  var date = await showDatePicker(
                       context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(2000),
-                      lastDate: DateTime(2025));
-
-                  if (datetime != null) {
-                    String formattedDate =
-                        DateFormat('dd-MM-yyyy').format(datetime);
-
-                    setState(() {
-                      datePicker.text = formattedDate;
-                    });
-                  }
+                      firstDate: DateTime.now(),
+                      lastDate: DateTime(3025));
+                  var formattedDate = dateFormat.format(date ?? DateTime.now());
+                  pickDate = formattedDate;
+                  setState(() {});
+                  print("date $date formattedDate $formattedDate");
                 },
+                child: Text("date"),
               ),
             ],
           ),
         ));
   }
-  
-  DateFormat(String s) {}
+
+  //DateFormat(String s) {}
 }
